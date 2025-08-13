@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Tailor_Management_System.Models;
 
 namespace Tailor_Management_System.Data
 {
@@ -9,5 +10,6 @@ namespace Tailor_Management_System.Data
             : base(options)
         {
         }
+        public DbSet<Order> Order { get; set; }
     }
 }
