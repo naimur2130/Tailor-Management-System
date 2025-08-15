@@ -60,5 +60,42 @@ namespace Tailor_Management_System.Areas.CustomerArea.Controllers
                 ToList();
             return new JsonResult(order);
         }
+        [HttpGet]
+        public IActionResult Pay(int id)
+        {
+            var model = new PaymentViewModel
+            {
+                OrderId = id
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult>  Pay(PaymentViewModel order)
+        {
+            if(ModelState.IsValid)
+            {
+                var existingOrder = _context.Order.Find(order.OrderId);
+                var user =await _userManager.GetUserAsync(User);
+                var payment = new Payment
+                {
+                    OrderId = order.OrderId,
+                    PhoneNumber = order.PhoneNumber,
+                    Amount = order.Amount,
+                    UserId = user.Id
+                };
+                if (existingOrder != null)
+                {
+                    existingOrder.PaymentDone = true;
+                    existingOrder.Status = "Paid";
+                    _context.SaveChanges();
+                    TempData["Success"] = "Payment successful!";
+                    _context.Payment.Add(payment);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                TempData["Error"] = "Order not found!";
+            }
+            return View(order);
+        }
     }
 }

@@ -17,10 +17,11 @@
                     } else if (data === "Rejected") {
                         return '<span class="badge bg-danger p-2">Rejected</span>';
                     } else if (data === "Confirmed" && !row.paymentDone) {
-                        return `<a href="/Payment/Pay/${row.orderId}" class="btn btn-success btn-sm">
-                                    <i class="bi bi-credit-card"></i> Pay Now
-                                </a>`;
-                    } else if (row.paymentDone) {
+                        return `<a href="/CustomerArea/Order/Pay/${row.orderId}" class="btn btn-success btn-sm">
+                          <i class="bi bi-credit-card"></i> Pay Now
+                           </a>`;
+                    }
+                    else if (row.paymentDone) {
                         return '<span class="badge bg-primary p-2"><i class="bi bi-check-circle-fill"></i> Paid</span>';
                     }
                     return data;

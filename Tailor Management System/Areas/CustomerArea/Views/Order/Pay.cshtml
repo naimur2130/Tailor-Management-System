@@ -1,0 +1,25 @@
+﻿@model Tailor_Management_System.ViewModel.PaymentViewModel
+
+<h2>Make Payment</h2>
+
+<form asp-action="Pay" method="post">
+    <input type="hidden" asp-for="OrderId" />
+
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Amount" class="form-label"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Pay</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
