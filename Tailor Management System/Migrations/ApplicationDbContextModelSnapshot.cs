@@ -8,7 +8,7 @@ using Tailor_Management_System.Data;
 
 #nullable disable
 
-namespace Tailor_Management_System.Data.Migrations
+namespace Tailor_Management_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -238,6 +238,9 @@ namespace Tailor_Management_System.Data.Migrations
                     b.Property<string>("DressType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsNotified")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Measurements")
                         .IsRequired()

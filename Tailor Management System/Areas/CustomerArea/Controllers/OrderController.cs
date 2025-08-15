@@ -45,7 +45,7 @@ namespace Tailor_Management_System.Areas.CustomerArea.Controllers
             _context.Order.Add(order);
             await _context.SaveChangesAsync();
             TempData["Success"] = "Your order has been placed successfully!";
-            return RedirectToAction("MyOrder");
+            return RedirectToAction("Index");
         }
         public IActionResult Index()
         {

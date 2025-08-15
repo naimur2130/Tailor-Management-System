@@ -9,11 +9,11 @@ using Tailor_Management_System.Data;
 
 #nullable disable
 
-namespace Tailor_Management_System.Data.Migrations
+namespace Tailor_Management_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250813185316_AddTimeDurationToOrder")]
-    partial class AddTimeDurationToOrder
+    [Migration("20250815183138_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,6 +241,9 @@ namespace Tailor_Management_System.Data.Migrations
                     b.Property<string>("DressType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsNotified")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Measurements")
                         .IsRequired()
