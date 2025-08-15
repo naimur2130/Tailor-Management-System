@@ -45,6 +45,12 @@
                             <p>My Orders</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-area="CustomerArea" asp-controller="Order" asp-action="Completed" class="nav-link">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>Complete Orders</p>
+                        </a>
+                    </li>
                 }
 
                 @if (User.IsInRole("Tailor"))

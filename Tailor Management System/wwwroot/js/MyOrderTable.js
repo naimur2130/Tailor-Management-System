@@ -22,7 +22,7 @@
                            </a>`;
                     }
                     else if (row.paymentDone) {
-                        return '<span class="badge bg-primary p-2"><i class="bi bi-check-circle-fill"></i> Paid</span>';
+                        return `<span class="badge bg-primary p-2"><i class="bi bi-check-circle-fill"></i> Paid</span>`;
                     }
                     return data;
                 }

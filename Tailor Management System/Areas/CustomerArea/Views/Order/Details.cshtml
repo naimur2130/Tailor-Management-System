@@ -1,0 +1,24 @@
+﻿@model Tailor_Management_System.ViewModel.InvoiceViewModel
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4>Invoice - @Model.InvoiceNumber</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Date:</strong> @Model.InvoiceDate.ToString("dd/MM/yyyy")</p>
+            <p><strong>Customer Name:</strong> @Model.CustomerName</p>
+            <p><strong>Phone:</strong> @Model.CustomerPhone</p>
+            <p><strong>Address:</strong> @Model.Address</p>
+            <hr />
+            <p><strong>Dress Type:</strong> @Model.DressType</p>
+            <p><strong>Measurements:</strong> @Model.Measurements</p>
+            <p><strong>Time Duration:</strong> @Model.TimeDuration</p>
+            <hr />
+            <p><strong>Order Status:</strong> @Model.OrderStatus</p>
+            <p><strong>Amount:</strong> $@Model.Amount</p>
+
+            <button class="btn btn-success mt-3" onclick="window.print()">Print Invoice</button>
+        </div>
+    </div>
+</div>

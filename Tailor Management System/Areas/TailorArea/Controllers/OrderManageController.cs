@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Tailor_Management_System.Data;
 using Tailor_Management_System.Models;
+using Tailor_Management_System.ViewModel;
 
 namespace Tailor_Management_System.Areas.TailorArea.Controllers
 {
@@ -33,5 +35,6 @@ namespace Tailor_Management_System.Areas.TailorArea.Controllers
             _context.SaveChanges();
             return RedirectToAction("PendingRequests");
         }
+        
     }
 }

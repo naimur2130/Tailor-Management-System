@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Tailor_Management_System.Data;
 using Tailor_Management_System.Models;
 using Tailor_Management_System.ViewModel;
@@ -96,6 +97,65 @@ namespace Tailor_Management_System.Areas.CustomerArea.Controllers
                 TempData["Error"] = "Order not found!";
             }
             return View(order);
+        }
+       
+        [HttpGet]
+        public IActionResult Completed()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> GetCompletedPayments()
+        {
+            var payments = await _context.Payment
+                .Include(p => p.Order)
+                .Include(p => p.User)
+                .Where(p => p.Order.PaymentDone)
+                .Select(p => new
+                {
+                    paymentId = p.PaymentId,
+                    orderId = p.Order.OrderId,
+                    userName = p.User.UserName,
+                    phoneNumber = p.PhoneNumber,
+                    amount = p.Amount,
+                    orderStatus = p.Order.Status,
+                    dressType = p.Order.DressType,
+                    measurements = p.Order.Measurements,
+                    timeDuration = p.Order.TimeDuration,
+                    address = p.Order.Address,
+                    createdAt = p.Order.CreatedAt
+                })
+                .OrderByDescending(p => p.createdAt)
+                .ToListAsync();
+
+            return Json(new { data = payments });
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var payment = await _context.Payment
+                .Include(p => p.Order)
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.PaymentId == id);
+
+            if (payment == null)
+                return NotFound();
+
+            var invoice = new InvoiceViewModel
+            {
+                InvoiceNumber = $"INV{DateTime.Now:yyyyMMdd}-{payment.PaymentId}",
+                InvoiceDate = DateTime.Now,
+                CustomerName = payment.User.UserName,
+                CustomerPhone = payment.PhoneNumber,
+                DressType = payment.Order.DressType,
+                Measurements = payment.Order.Measurements,
+                Address = payment.Order.Address,
+                Amount = payment.Amount,
+                OrderStatus = payment.Order.Status,
+                TimeDuration = payment.Order.TimeDuration
+            };
+
+            return View(invoice);
         }
     }
 }
