@@ -53,43 +53,27 @@
                     </li>
                 }
 
-                @if (User.IsInRole("Tailor"))
+                @if (User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
-                        <a asp-area="TailorArea" asp-controller="OrderManage" asp-action="PendingRequests" class="nav-link">
+                        <a asp-area="AdminArea" asp-controller="OrderManage" asp-action="PendingRequests" class="nav-link">
                             <i class="nav-icon fas fa-tasks"></i>
                             <p>Pending Requests</p>
                         </a>
                     </li>
                 }
 
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Tailor"))
                 {
                     <li class="nav-item">
-                        <a asp-area="" asp-controller="Dashboard" asp-action="Index" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Orders" asp-action="AllOrders" class="nav-link">
-                            <i class="nav-icon fas fa-list-alt"></i>
-                            <p>All Orders</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Transactions" asp-action="Index" class="nav-link">
-                            <i class="nav-icon fas fa-receipt"></i>
-                            <p>Transactions</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Inventory" asp-action="Index" class="nav-link">
-                            <i class="nav-icon fas fa-boxes"></i>
-                            <p>Inventory</p>
+                        <a asp-area="TailorArea" asp-controller="Home" asp-action="MyAssignedOrders" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Pending Requests</p>
                         </a>
                     </li>
                 }
+
+                
 
             </ul>
         </nav>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Tailor_Management_System.Models.Order>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>My Assigned Orders</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Dress Type</th>
+            <th>Measurements</th>
+            <th>Time Duration</th>
+            <th>Placed On</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.DressType</td>
+                <td>@order.Measurements</td>
+                <td>@order.TimeDuration</td>
+                <td>@order.CreatedAt.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <form asp-action="ConfirmOrder" asp-controller="Home" asp-area="TailorArea" method="post" style="display:inline;">
+                        <input asp-for="@order.OrderId" type="hidden" name="id" />
+
+                        <button type="submit" name="decision" value="accept" class="btn btn-success btn-sm">Accept</button>
+                        <button type="submit" name="decision" value="reject" class="btn btn-danger btn-sm">Reject</button>
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
