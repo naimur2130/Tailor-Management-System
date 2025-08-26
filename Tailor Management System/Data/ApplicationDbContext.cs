@@ -14,5 +14,6 @@ namespace Tailor_Management_System.Data
         public DbSet<Payment> Payment { get; set; }
         public DbSet<OrderAssignment> OrderAssignment { get; set; }
         public DbSet<Notification> Notification { get; set; }
+        public DbSet<Inventory> Inventory { get; set; } 
     }
 }

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Tailor_Management_System.Models.Inventory>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-3">Inventory</h2>
+<a asp-area="AdminArea" asp-controller="Inventory" asp-action="Create" class="btn btn-primary mb-4">+ Add Item</a>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-lg border-0 rounded-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">@item.ItemName</h5>
+                    <p class="card-text mb-1"><strong>Quantity:</strong> @item.Quantity</p>
+                    <p class="card-text mb-1"><strong>Unit:</strong> @item.Unit</p>
+                </div>
+                <div class="card-footer bg-light text-center">
+                    <a asp-area="AdminArea" asp-controller="Inventory" asp-action="Edit" asp-route-id="@item.InventoryId" class="btn btn-sm btn-warning me-2">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                    <a asp-area="AdminArea" asp-controller="Inventory" asp-action="Delete" asp-route-id="@item.InventoryId" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
