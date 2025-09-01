@@ -17,7 +17,7 @@
                         return '<span class="badge bg-secondary p-2">Pending</span>';
                     } else if (data === "Rejected") {
                         return '<span class="badge bg-danger p-2">Rejected</span>';
-                    } else if (data === "Confirmed" && !row.paymentDone) {
+                    } else if (data === "ReadyForPayment" && !row.paymentDone) {
                         return `<a href="/CustomerArea/Order/Pay/${row.orderId}" class="btn btn-success btn-sm">
               <i class="bi bi-credit-card"></i> Pay Now
             </a>`;

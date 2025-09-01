@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Tailor_Management_System.Models.Payment>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-3">All Transactions</h2>
+
+<button class="btn btn-primary mb-3" onclick="window.print();">
+    <i class="bi bi-printer"></i> Print Transactions
+</button>
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-3 h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-primary fw-bold">Payment #@p.PaymentId</h5>
+                    <p class="card-text"><strong>User:</strong> @p.User?.UserName</p>
+                    <p class="card-text"><strong>Order ID:</strong> @p.OrderId</p>
+                    <p class="card-text"><strong>Amount:</strong> @p.Amount.ToString("C")</p>
+                    <p class="card-text"><strong>Phone:</strong> @p.PhoneNumber</p>
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <a asp-action="Details" asp-route-id="@p.PaymentId" class="btn btn-info btn-sm">
+                        <i class="bi bi-info-circle"></i> Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

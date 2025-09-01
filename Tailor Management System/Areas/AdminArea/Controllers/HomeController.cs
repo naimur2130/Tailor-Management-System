@@ -16,7 +16,8 @@ namespace Tailor_Management_System.Areas.AdminArea.Controllers
         public IActionResult Index()
         {
             var proccessedOrders = _context.Order
-        .Where(o => o.Status == OrderStatus.ConfirmedByTailor || o.Status==OrderStatus.Rejected)
+        .Where(o => o.Status == OrderStatus.ConfirmedByTailor || 
+        o.Status==OrderStatus.Rejected || o.Status=="Paid")
         .OrderByDescending(o => o.CreatedAt)
         .ToList();
             return View(proccessedOrders);

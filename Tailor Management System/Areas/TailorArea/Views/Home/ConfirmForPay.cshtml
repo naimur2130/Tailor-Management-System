@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Tailor_Management_System.Models.OrderAssignment>
+
+@{
+    ViewData["Title"] = "Confirm For Pay";
+}
+
+<h2 class="mb-4">Orders Assigned to You</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No confirmed orders available.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer Name</th>
+                <th>Dress Type</th>
+                <th>Measurements</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model)
+            {
+                <tr>
+                    <td>@assignment.Order.UserId</td>
+                    <td>@assignment.Order.DressType</td>
+                    <td>@assignment.Order.Measurements</td>
+                    <td>@assignment.Order.Status</td>
+                    <td>
+                        <form asp-action="ConfirmForPay" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@assignment.OrderId" />
+                            <input type="hidden" name="status" value="ReadyForPayment" />
+                            <button type="submit" class="btn btn-success btn-sm">Ready</button>
+                        </form>
+                        <form asp-action="ConfirmForPay" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@assignment.OrderId" />
+                            <input type="hidden" name="status" value="Terminated" />
+                            <button type="submit" class="btn btn-danger btn-sm">Terminate</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -73,6 +73,12 @@
                             <p>Inventory</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a asp-area="AdminArea" asp-controller="Payment" asp-action="Transactions" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Transactions</p>
+                        </a>
+                    </li>
                 }
 
                 @if (User.IsInRole("Tailor"))
@@ -81,6 +87,18 @@
                         <a asp-area="TailorArea" asp-controller="Home" asp-action="MyAssignedOrders" class="nav-link">
                             <i class="nav-icon fas fa-tasks"></i>
                             <p>Pending Requests</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="TailorArea" asp-controller="Home" asp-action="Inventories" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Check Inventory</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="TailorArea" asp-controller="Home" asp-action="ConfirmForPay" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>Order In Queue</p>
                         </a>
                     </li>
                 }

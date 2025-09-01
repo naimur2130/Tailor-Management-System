@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Tailor_Management_System.Models.Inventory>
+
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<div class="container mt-4">
+    <form asp-area="TailorArea" asp-controller="Home" asp-action="UpdateInventory" method="post">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.ItemName</h5>
+                            <p class="card-text">
+                                Available: <strong>@item.Quantity</strong> @item.Unit
+                            </p>
+
+                            <input type="hidden" name="inventoryIds" value="@item.InventoryId" />
+
+                            <div class="mb-2">
+                                <input type="number" name="quantities" class="form-control" min="0" max="@item.Quantity" placeholder="Enter Quantity" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary px-5">Proceed</button>
+        </div>
+    </form>
+</div>
+
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-success mt-3">@TempData["success"]</div>
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["error"]</div>
+}

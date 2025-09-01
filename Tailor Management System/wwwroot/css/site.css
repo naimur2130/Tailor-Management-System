@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .card, .card * {
+        visibility: visible;
+    }
+
+    .card {
+        page-break-inside: avoid;
+    }
+}
